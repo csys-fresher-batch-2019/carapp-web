@@ -1,39 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
     <%@page import="com.chainsys.carsale.dao.impl.CarOwnerImp" %>
     <%@page import="com.chainsys.carsale.model.CarOwner" %>
     <%@page import="java.util.List" %>
+    <jsp:include page="header.jsp"></jsp:include>
   
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>MyCars</title>
 </head>
+<script>
+
+</script>
 <body>
 <form>
+
+
 <%
 	Integer sellerId=(Integer)session.getAttribute("login_seller_id"); 
 CarOwnerImp odi=new CarOwnerImp();
 List<CarOwner> car=(List<CarOwner>)request.getAttribute("totalCar");
+String msg="no records";
 %>
-<table>
-<thead>
-<tr>
-<th>SellerName</th>
-<th>SellerId</th>
-<th>CarAvailableCity</th>
-<th>CarBrand</th>
-<th>CarName</th>
-<th>DrivenKm</th>
-<th>Price</th>
-<th>Registration Year</th>
-<th>Registration Number</th>
-<th>Vehicle Identification Number</th>
-</tr>
-</thead>
-<% if(sellerId !=0 && car !=null){
-{for(CarOwner co:car){%>
+<% if(car!=null&& !car.isEmpty()){%>
+	<table>
+	<thead>
+	<tr>
+	<th>SellerName</th>
+	<th>SellerId</th>
+	<th>CarAvailableCity</th>
+	<th>CarBrand</th>
+	<th>CarName</th>
+	<th>DrivenKm</th>
+	<th>Price</th>
+	<th>Registration Year</th>
+	<th>Registration Number</th>
+	<th>Vehicle Identification Number</th>
+	</tr>
+	</thead>
+<% for(CarOwner co:car){%>
+
 	<tr>
 	<td><%=co.getOwnerName() %></td>
 	<td><%=co.getOwnerId() %></td>
@@ -46,11 +56,15 @@ List<CarOwner> car=(List<CarOwner>)request.getAttribute("totalCar");
 	<td><%=co.getCarDetail().getRegistrationNo() %></td>
 	<td><%=co.getCarDetail().getVehicleIdNo() %></td>
 	</tr>
+	
+	<%}%>
+	</table>
 	<%}
-}
-}
-%>
-</table>
+else {%>
+		<h1>NO RECORDS</h1>
+
+<% }%>
+
 </form>
 </body>
 </html>

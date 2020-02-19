@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
     <jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
@@ -352,7 +354,7 @@ function validate()
 <%String errorMessage = request.getParameter("errorMessage");%>
 
 <% if (errorMessage != null){%>
-windows.alert("mismtched userId and Password") ;
+windows.alert("mismatched userId and Password") ;
 <% }%>
 }
 </script>
@@ -370,7 +372,8 @@ windows.alert("mismtched userId and Password") ;
 <div class="form-label-group">
 
 
-<input type="number" id="phone" name="mobileno" class="form-control user-mobile" placeholder="Enter Name" maxlength="10">
+<input type="text" id="phone" name="mobileno" placeholder="Enter Name"  pattern="[0-9]{10}||[0-9]{4}" title="10 digit mobile no OR Your User Id" class="form-control user-mobile" required>
+
 <label for="phone">Mobile Number/sellerid*</label>
 
 </div>
@@ -383,7 +386,7 @@ windows.alert("mismtched userId and Password") ;
 </form>
 </div>
 </div>
-<h4 class="modal-title">Welcome to<span class="orange"> BuYSaLeS</span></h4>
+<h4 class="modal-title">Welcome to<span class="orange"> BuYSeLLS</span></h4>
 </div>
 </div>
 </div>

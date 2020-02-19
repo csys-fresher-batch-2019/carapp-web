@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
     <%@page import="java.util.List" %>
      <%@page import="com.chainsys.carsale.model.CarDetail" %>
+     <jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Search By Brand</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <style>
 
@@ -28,7 +31,7 @@ float:left;
 padding-left: 20px;
 padding-right: 20px;
 padding-top: 20px;
-padding-bottom: ;
+padding-bottom: px;
 }
 .right{
 float:right;
@@ -39,32 +42,39 @@ float:right;
 <body>
 <form action="SearchByBrandServlet" method="get">
 <div>
-<input type="text" name="carBrand" required/>
+<input list="carBrand"  name="carBrand" placeholder="CarBrand">
+<datalist id="carBrand">
+<option value="audi">
+<option value="honda">
+<option value="ford">
+<option value="tata">
+<option value="hundai">
+<option value="maruti">
+<option value="suzuki">
+</datalist>
 <button name="submit">Search</button>
 </div>
-<%if(cd!=null)
-{%>
-<%	for(CarDetail cd1:cd)
+<%if((cd!=null)&&!cd.isEmpty()){%>
+<%for(CarDetail cdl:cd)
 	{%>
 <div class="left">
-<div class ="card-desk", class="left">
-<div class="card" style="width: 18rem; height: 25rem">
-  <img src="assets/images/<%=cd1.getImageSrc()%>" class="card-img-top" alt="image">
+<div class ="card-desk" class="left">
+<div class="card" style="width: 18rem; height: 20rem">
+  <img src="assets/images/<%=cdl.getImageSrc()%>" class="card-img-top" alt="image">
   <div class="card-body">
-    <h5 class="card-title"><%=cd1.getCarBrand() %> <%=cd1.getCarName() %> </h5>
-    <h6 class="card-text">price:<%=cd1.getRegYear()%>
-    <br/>
-    <br/>
-    DrivenKm:<%=cd1.getDrivenKm()%>
-    <br/>
-    <br/>
-    price:<%=cd1.getPrice() %></h6>
-    <a href="viewFullDetail" class="right" class="madal-title"><span class="orange">view Detail></a></a>
+    <h5 class="card-title"><%=cdl.getCarBrand() %> <%=cdl.getCarName() %> </h5>
+    <h6 class="card-text">Registration year:<%=cdl.getRegYear()%></h6>
+    <h6>DrivenKm:<%=cdl.getDrivenKm()%></h6>
+    <h6>price:<%=cdl.getPrice() %></h6>
+    <a href="SearchCarServlet?carId=<%=cdl.getCarId()%>" class="right" class="madal-title"><span class="orange">view Detail></span></a>
   </div>
 </div>
 </div>
 </div>
 <%}%>
+<%}else {%>
+
+<h3> oops car not Found</h3>
 <%} %>
 </form>
 </body>

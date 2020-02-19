@@ -1,3 +1,5 @@
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +50,14 @@ float:right;
   color: #ed6c0d;
   cursor: pointer !important;
 }
+.white{
+  color:#ffffff;
+  cursor: pointer !important;
+}
+.rgiht{
+float:left;
+}
+
 </style>
 </head>
  <%
@@ -62,10 +72,16 @@ float:right;
   <a href="register.jsp" class="right">Register</a>
  <%} %>
  <%if(sellerId!=null){ %>
+ 
  <a href="LogoutServlet" class="right">Logout</a>
+  <a class="right"><span class="white">User Id:</span><Span class="orange"><%=sellerId %></Span></a>
  <a href="addCar.jsp" class="right">AddCars</a>
- <a href= "viewCar" class="right">ViewCar</a>
- <h3 class="right">SELLER ID:<Span class="orange"><%=sellerId %></Span></h3>
+ <a href= "viewCar" class="right">ViewMyCars</a>
+ <a href="ViewAllCar.jsp" class="left">HOME</a>
+ <a href="viewOrderedCarServlet" class="right">orderedCars</a>
+ <a href="SearchByPrice.jsp" class="left">SearchBy price</a>
+ <a href="SearchByBrand.jsp" class="left">Search By Brand</a>
+ 
  <%} %>
 </div>
 

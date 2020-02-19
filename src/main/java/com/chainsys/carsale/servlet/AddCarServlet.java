@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.chainsys.carsale.dao.impl.CarDetailImp;
 import com.chainsys.carsale.model.CarDetail;
 import com.chainsys.carsale.util.DbException;
-
+@WebServlet("/AddCarServlet")
 public class AddCarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,9 +32,9 @@ public class AddCarServlet extends HttpServlet {
 		carDetail.setCarName(carName);
 		String carBrand = request.getParameter("carBrand");
 		carDetail.setCarBrand(carBrand);
-		String trType = request.getParameter("trType");
+		String trType = request.getParameter("tr");
 		carDetail.setTrType(trType);
-		String fuelType = request.getParameter("fuelType");
+		String fuelType = request.getParameter("fuel");
 		carDetail.setFuelType(fuelType);
 		String regState = request.getParameter("regState");
 		carDetail.setRegState(regState);
@@ -46,9 +47,10 @@ public class AddCarServlet extends HttpServlet {
 		String regNo = request.getParameter("regNo");
 		carDetail.setRegistrationNo(regNo);
 		String vid = request.getParameter("vid");
+		String imageSrc=request.getParameter("image");
 		carDetail.setVehicleIdNo(vid);
 		carDetail.setCarOwnerId(sellerId);
-		
+        carDetail.setImageSrc(imageSrc);		
 			try {
 				ci.addCarDetail(carDetail);
 				System.out.println("Add success");

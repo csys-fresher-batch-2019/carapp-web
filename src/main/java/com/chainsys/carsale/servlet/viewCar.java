@@ -5,15 +5,16 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import com.chainsys.carsale.dao.impl.CarOwnerImp;
 import com.chainsys.carsale.model.CarOwner;
 import com.chainsys.carsale.util.DbException;
+@WebServlet("/viewCar")
 public class viewCar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
