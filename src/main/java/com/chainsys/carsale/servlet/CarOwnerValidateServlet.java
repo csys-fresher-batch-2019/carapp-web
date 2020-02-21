@@ -26,8 +26,12 @@ public class CarOwnerValidateServlet extends HttpServlet {
 		Integer alreadyRegistered = 0;
 		try {
 			boolean exists = coi.isCarOwnerAlreadyRegistered(phNo);
-			if ( exists) {
+			if (exists) {
 				alreadyRegistered = 1;
+			}
+			else
+			{
+				alreadyRegistered = 0;	
 			}
 			System.out.println(exists);
 		} catch (DbException e) {

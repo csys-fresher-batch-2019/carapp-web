@@ -77,6 +77,7 @@ float:left;
   <a class="right"><span class="white">User Id:</span><Span class="orange"><%=sellerId %></Span></a>
  <a href="addCar.jsp" class="right">AddCars</a>
  <a href= "viewCar" class="right">ViewMyCars</a>
+ <a href="WhoOrderedMyCarSevlet"class="right">MyOrderedCar</a>
  <a href="ViewAllCar.jsp" class="left">HOME</a>
  <a href="viewOrderedCarServlet" class="right">orderedCars</a>
  <a href="SearchByPrice.jsp" class="left">SearchBy price</a>

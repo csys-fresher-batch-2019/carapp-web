@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MyCars</title>
 </head>
@@ -27,7 +30,8 @@ List<CarOwner> car=(List<CarOwner>)request.getAttribute("totalCar");
 String msg="no records";
 %>
 <% if(car!=null&& !car.isEmpty()){%>
-	<table>
+	<div class="container">
+	<table  class="table table-striped">
 	<thead>
 	<tr>
 	<th>SellerName</th>
@@ -59,6 +63,7 @@ String msg="no records";
 	
 	<%}%>
 	</table>
+	</div>
 	<%}
 else {%>
 		<h1>NO RECORDS</h1>

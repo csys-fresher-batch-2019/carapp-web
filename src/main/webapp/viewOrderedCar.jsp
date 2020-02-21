@@ -20,7 +20,7 @@ CarOrderImp odi=new CarOrderImp();
 List<CarOrder> car=(List<CarOrder>)request.getAttribute("orderedlist");
 String msg="no records";
 %>
-<% if(car!=null &&  !car.isEmpty()){%>
+<% if(car!=null &&  !car.isEmpty()){ %>
 	<table>
 	<thead>
 	<tr>

@@ -72,10 +72,7 @@ float:right;
 </div>
 </div>
 <%}%>
-<%}else {%>
-
-<h3> oops car not Found</h3>
-<%} %>
+<%}%>
 </form>
 </body>
 </html>

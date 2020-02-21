@@ -7,6 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <title>L0G1N</title>
 </head>
 <style>
@@ -347,16 +351,46 @@ align-content:center;
             max-width: 100%;
         }
     }
+    #text {display:none;color:red}
 </style>
-<script type="text/javascript">
-function validate()
-{
-<%String errorMessage = request.getParameter("errorMessage");%>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script>
+function validateUser(userId){
+	var check="CarOwnerValidateServlet?phoneNo="+userId;
+	$.getJSON(check,function(data){
+		console.log('ajax' +  data);
+	var result=parseInt(data);
+	if(result==1)
+		{
+		$("#valid").removeClass("glyphicon-remove");
+		$("#valid").addClass("glyphicon-ok");
+		$("#valid").css("color","#00A41E");
+		}
+	else{
+		$("#valid").removeClass("glyphicon-ok");
+		$("#valid").addClass("glyphicon-remove");
+		$("#valid").css("color","#FF0004");
+		}
 
-<% if (errorMessage != null){%>
-windows.alert("mismatched userId and Password") ;
-<% }%>
+	});
+	
 }
+
+function capsOn(){
+	var input = document.getElementById("pass");
+	var text = document.getElementById("text");
+	input.addEventListener("keyup",function(event) {
+	if (event.getModifierState("CapsLock")) {
+	        text.style.display = "block";
+	 
+	  } else {
+	    text.style.display = "none";
+	  }
+	});
+
+}
+//capsOn();
+
 </script>
 <body>
 <div class="login" align="center">
@@ -372,15 +406,21 @@ windows.alert("mismatched userId and Password") ;
 <div class="form-label-group">
 
 
-<input type="text" id="phone" name="mobileno" placeholder="Enter Name"  pattern="[0-9]{10}||[0-9]{4}" title="10 digit mobile no OR Your User Id" class="form-control user-mobile" required>
-
-<label for="phone">Mobile Number/sellerid*</label>
-
+<input type="text" id="phone" name="mobileno" placeholder="MobileNumber/userId"  pattern="[0-9]{10}||[0-9]{4}" title="10 digit mobile No OR Your User Id" class="form-control user-mobile" required onblur="validateUser(this.value)">
+<label for="phone">Mobile Number/userId*</label>
+<span id="valid" class="glyphicon glyphicon-remove"style="color:#FF0004;"></span>
 </div>
 <div class="form-label-group otp-field" >
-<input type="password" id="pass" name="pass" class="form-control" placeholder="Password" autocomplete="off" required>
+<input type="password" id="pass" name="pass" class="form-control user-mobile" placeholder="Password" autocomplete="off" required onkeypress="capsOn()">
 <label for="pass">Password</label>
+<p id="text">WARNING! Caps lock is ON.</p>
 </div>
+<%String errorMessage = request.getParameter("errorMessage");%>
+
+<% if (errorMessage != null){%>
+     <font color="red"><h><%=errorMessage%></h></font>
+<% }%>
+
 <button type="submit" class="btn btn-default login-buton btn-disabled">Login</button>
 <br>
 </form>
