@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.carsale.dao.impl.CarOwnerImp;
 import com.chainsys.carsale.model.CarOwner;
 import com.chainsys.carsale.util.DbException;
+
 @WebServlet("/CarOwnerValidateServlet")
 public class CarOwnerValidateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		CarOwnerImp coi = new CarOwnerImp();
 		CarOwner coo = new CarOwner();
 		long phNo = Long.parseLong(request.getParameter("phoneNo"));
@@ -28,16 +28,14 @@ public class CarOwnerValidateServlet extends HttpServlet {
 			boolean exists = coi.isCarOwnerAlreadyRegistered(phNo);
 			if (exists) {
 				alreadyRegistered = 1;
-			}
-			else
-			{
-				alreadyRegistered = 0;	
+			} else {
+				alreadyRegistered = 0;
 			}
 			System.out.println(exists);
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
-		
+
 		PrintWriter out = response.getWriter();
 		out.println(alreadyRegistered);
 		out.flush();

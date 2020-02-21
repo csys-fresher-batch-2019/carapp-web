@@ -18,23 +18,22 @@ import com.chainsys.carsale.util.DbException;
 @WebServlet("/SearchByBrandServlet")
 public class SearchByBrandServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String carBrand=request.getParameter("carBrand");
-		CarDetail cd=new CarDetail();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String carBrand = request.getParameter("carBrand");
+		CarDetail cd = new CarDetail();
 		cd.setCarBrand(carBrand);
-		List<CarDetail> ar=new ArrayList<CarDetail>();
-		CarDetailImp cdi=new CarDetailImp();
+		List<CarDetail> ar = new ArrayList<CarDetail>();
+		CarDetailImp cdi = new CarDetailImp();
 		try {
-			ar=cdi.getCarDetail(carBrand);
-			request.setAttribute("availableCar",ar);
-			RequestDispatcher dispatcher=request.getRequestDispatcher("SearchByBrand.jsp");
+			ar = cdi.getCarDetail(carBrand);
+			request.setAttribute("availableCar", ar);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("SearchByBrand.jsp");
 			dispatcher.forward(request, response);
 		} catch (DbException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		doGet(request, response);
 	}
-
 }

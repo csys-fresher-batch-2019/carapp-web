@@ -19,10 +19,6 @@ import com.chainsys.carsale.util.DbException;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CarOwner cs = new CarOwner();
@@ -38,19 +34,18 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(sellerId);
 			if (sellerId == 0) {
 				throw new DbException("Invalid Login credential");
-			}
-			else if (sellerId != 0) {
+			} else if (sellerId != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("login_seller_id", sellerId);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("ViewAllCar.jsp");
 				dispatcher.forward(request, response);
 
-			} 
+			}
 		} catch (DbException e) {
 			e.printStackTrace();
 			response.sendRedirect("login.jsp?errorMessage=" + e.getMessage());
 
-		} 
+		}
 
 	}
 
